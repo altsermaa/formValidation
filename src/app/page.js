@@ -1,103 +1,122 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { use, useState } from "react";
+import { Step1 } from "@/_components/Step1";
+import { Step2 } from "@/_components/Step2";
+import { Step3 } from "@/_components/Step3";
+import { Step4 } from "@/_components/Step4";
+
+const HomePage = () => {
+  const comp = [Step1, Step2, Step3, Step4];
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    date: "",
+    image: "",
+  });
+
+  const [error, setError] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+    date: "",
+    image: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setText((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError((prev) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
+
+  const stepperNext = () => {
+    const validateError = {};
+    if (index === 0 && text.firstName.trim() === "") {
+      validateError.firstName = "neree olruulna";
+    }
+    if (
+      index === 0 &&
+      !/^[\u1800-\u18AF\u0400-\u04FF\s\d.,()-]+$/.test(text.firstName.trim())
+    ) {
+      validateError.firstName = "mongoloor bichne uu";
+    }
+    if (index === 0 && text.lastName.trim() === "") {
+      validateError.lastName = "ovgoo olruulna";
+    }
+    if (index === 0 && text.userName.trim() === "") {
+      validateError.userName = "hereglegchiin neree olruulna";
+    }
+    if (index === 1 && text.email.trim() === "") {
+      validateError.email = "emailee olruulna";
+    }
+    if (
+      index === 1 &&
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+        text.email.trim()
+      )
+    ) {
+      validateError.email = "emailee zov formataar olruulna";
+    }
+    if (index === 1 && text.phoneNumber.trim() === "") {
+      validateError.phoneNumber = "utasnii dugaaraa olruulna";
+    }
+    // if (index === 1 && /^(\\d{10}|\\d{12})$/.test(text.phoneNumber.trim())) {
+    //   validateError.phoneNumber = "utasnii dugaaraa zov olruulna";
+    // }
+
+    if (index === 1 && text.password.trim() === "") {
+      validateError.password = "nuuts ugee olruulna";
+    }
+    if (index === 1 && text.confirmPassword.trim() === "") {
+      validateError.confirmPassword = "nuuts ugee dahin olruulna";
+    }
+    if (index === 2 && text.date.trim() === "") {
+      validateError.date = "on saraa olruulna";
+    }
+    if (index === 2 && text.image.trim() === "") {
+      validateError.image = "zurgaa olruulna";
+    }
+    if (Object.keys(validateError).length === 0) {
+      setIndex((prev) => prev + 1);
+    } else {
+      setError((prev) => ({ ...prev, ...validateError }));
+    }
+  };
+
+  const stepperBack = () => {
+    index !== 0 && setIndex((prev) => prev - 1);
+  };
+
+  const Stepper = comp[index];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="flex">
+      <h1 className="absolute">{JSON.stringify(error)}</h1>
+      <Stepper
+        stepperNext={stepperNext}
+        stepperBack={stepperBack}
+        text={text}
+        handleChange={handleChange}
+        error={error}
+      />
     </div>
   );
-}
+};
+
+export default HomePage;
