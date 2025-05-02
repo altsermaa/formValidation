@@ -47,50 +47,49 @@ const HomePage = () => {
 
   const stepperNext = () => {
     const validateError = {};
-    if (index === 0 && text.firstName.trim() === "") {
-      validateError.firstName = "neree olruulna";
-    }
-    if (
-      index === 0 &&
-      !/^[\u1800-\u18AF\u0400-\u04FF\s\d.,()-]+$/.test(text.firstName.trim())
-    ) {
-      validateError.firstName = "mongoloor bichne uu";
-    }
-    if (index === 0 && text.lastName.trim() === "") {
-      validateError.lastName = "ovgoo olruulna";
-    }
-    if (index === 0 && text.userName.trim() === "") {
-      validateError.userName = "hereglegchiin neree olruulna";
-    }
-    if (index === 1 && text.email.trim() === "") {
-      validateError.email = "emailee olruulna";
-    }
-    if (
-      index === 1 &&
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+    if (index === 0 ) 
+      {
+      if(text.firstName.trim() === "")  {
+        { validateError.firstName = "neree olruulna"; }
+      } else if (!/^[\u1800-\u18AF\u0400-\u04FF\s\d.,()-]+$/.test(text.firstName.trim())) 
+        {validateError.firstName = "Монгол үсгээр бичнэ үү"}     
+        }
+      if(text.lastName.trim() === "") {
+        validateError.lastName = "ovgoo olruulna";
+      }
+      if (text.userName.trim() === "") {
+        validateError.userName = "hereglegchiin neree olruulna";
+      }
+    
+    if (index === 1) 
+      {
+      if(text.email.trim() === "") {
+        validateError.email = "emailee olruulna";
+      } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
         text.email.trim()
-      )
-    ) {
-      validateError.email = "emailee zov formataar olruulna";
-    }
-    if (index === 1 && text.phoneNumber.trim() === "") {
-      validateError.phoneNumber = "utasnii dugaaraa olruulna";
-    }
-    // if (index === 1 && /^(\\d{10}|\\d{12})$/.test(text.phoneNumber.trim())) {
-    //   validateError.phoneNumber = "utasnii dugaaraa zov olruulna";
-    // }
-
-    if (index === 1 && text.password.trim() === "") {
-      validateError.password = "nuuts ugee olruulna";
-    }
-    if (index === 1 && text.confirmPassword.trim() === "") {
-      validateError.confirmPassword = "nuuts ugee dahin olruulna";
-    }
-    if (index === 2 && text.date.trim() === "") {
-      validateError.date = "on saraa olruulna";
-    }
-    if (index === 2 && text.image.trim() === "") {
-      validateError.image = "zurgaa olruulna";
+      )) {
+        validateError.email = "emailee zov formataar olruulna";
+      }
+      if(text.phoneNumber.trim() === "") {
+          validateError.phoneNumber = "utasnii dugaaraa olruulna";
+      } else if (!/^\d{10}$|^\d{12}$/.test(text.phoneNumber.trim())) {
+          validateError.phoneNumber = "utasnii dugaaraa zov olruulna";
+        }
+      if(text.password.trim() === ""){
+        validateError.password = "nuuts ugee olruulna";
+      }
+      if(text.confirmPassword.trim() === "") {
+        validateError.confirmPassword = "nuuts ugee dahin olruulna";
+      }
+      }
+    if(index === 2 ) 
+      {
+      if(text.date.trim() === "") {
+        validateError.date = "on saraa olruulna";
+      }
+      if(text.image.trim() === "") {
+        validateError.image = "zurgaa olruulna";
+      }
     }
     if (Object.keys(validateError).length === 0) {
       setIndex((prev) => prev + 1);
