@@ -40,7 +40,7 @@ export const Step2 = ({
             <Input
               labelName={"Confirm password"}
               name={"confirmPassword"}
-              text={text.confirmpassword}
+              text={text.confirmPassword}
               handleChange={handleChange}
               error={error}
             />
