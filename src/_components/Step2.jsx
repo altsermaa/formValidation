@@ -11,11 +11,16 @@ export const Step2 = ({
   error,
 }) => {
   return (
-    <motion.div>
-      <div className="bg-white w-[480px] h-[655px] flex flex-col justify-between rounded-md p-8">
+    <motion.div
+    initial={{ opacity: 0, x: 100 }}   
+    animate={{ opacity: 1, x: 0 }}   
+    exit={{ opacity: 0, x: -100 }} 
+    transition={{duration: 0.4}}
+    >
+      <div className="bg-white w-[480px] min-h-[655px] flex flex-col justify-between rounded-lg p-8">
         <div className="flex flex-col gap-7">
           <Header />
-          <div className="flex flex-col">
+          <form className="flex flex-col gap-3">
             <Input
               labelName={"Email"}
               name={"email"}
@@ -44,31 +49,27 @@ export const Step2 = ({
               handleChange={handleChange}
               error={error}
             />
+            <div className="flex gap-3">
+              <div className="flex flex-1/3 border border-[#c9d6df] rounded-lg">
+                <Button
+                  text={"Back"}
+                  type={"prev"}
+                  onClick={stepperBack}
+                />
+              </div>
+
+              <div className="flex flex-2/3">
+                <Button
+                  text={"Continue 1/3"}
+                  type={"next"}
+                  onClick={stepperNext}
+                />
+              </div>
           </div>
+          </form>
         </div>
 
-        <div className="flex">
-          <div className="flex flex-1/3 border border-gray-500">
-            <Button
-              text={"Back"}
-              type={"prev"}
-              onClick={stepperBack}
-              //   bgColor={"bg-black"}
-              //   textColor={"text-white"}
-            />
-          </div>
-
-          <div className="flex flex-2/3">
-            <Button
-              text={"Continue 1/3"}
-              type={"next"}
-              onClick={stepperNext}
-              name={"2/3"}
-              //   bgColor={"bg-black"}
-              //   textColor={"text-white"}
-            />
-          </div>
-        </div>
+        
       </div>
     </motion.div>
   );

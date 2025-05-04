@@ -12,26 +12,26 @@ export const Step1 = ({
   name,
   error,
 }) => {
-  // const [text, setText] = useState("");
-
-  // const handleChange = (e) => {
-  //   setText(e.target.value);
-  // };
 
   return (
-    <motion.div>
-      <div className="bg-white w-[480px] h-[655px] flex flex-col justify-between rounded-md p-8">
+    <motion.div
+    initial={{ opacity: 0, x: 100 }}   
+    animate={{ opacity: 1, x: 0 }}   
+    exit={{ opacity: 0, x: -100 }} 
+    transition={{duration: 0.4}}
+    >
+      <div className="bg-white w-[480px] min-h-[655px] flex flex-col justify-between rounded-lg p-8">
         <div className="flex flex-col gap-7">
           <Header />
-          <div className="flex flex-col">
+          <form className="flex flex-col gap-3">
             <Input
               labelName={"First name"}
               name={"firstName"}
               text={text.firstName}
               handleChange={handleChange}
               error={error}
+              type={"text"}
             />
-
             <Input
               labelName={"Last name"}
               name={"lastName"}
@@ -46,13 +46,12 @@ export const Step1 = ({
               handleChange={handleChange}
               error={error}
             />
-          </div>
+          </form>
         </div>
         <Button
           text={"Continue 1/3"}
           type={"next"}
           onClick={stepperNext}
-          name={"1/3"}
           // text={text}
           // setText={setText}
           //   bgColor={"bg-black"}

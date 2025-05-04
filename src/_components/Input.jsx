@@ -10,9 +10,10 @@ export const Input = ({
   handleChange,
   name,
   error,
+  className
 }) => {
   return (
-    <div className="flex flex-col my-3">
+    <div className={`flex flex-col space-y-2 ${className}`}>
       <label htmlFor={labelName} className="font-bold">
         {labelName}
         <sup className="text-red-800">*</sup>{" "}
@@ -23,9 +24,9 @@ export const Input = ({
         value={text}
         onChange={handleChange}
         placeholder="placeholder"
-        className="w-full h-fit py-3 pl-3 border border-gray-300 rounded-md"
+        className="w-full h-fit p-3 rounded-md outline outline-[#CBD5E1] focus: outline-[#0CA5E9]"
       />
-      {error[name] && <h1 className="text-red-500">{error[name]}</h1>}
+      {error[name] && <p className="text-xs text-red-500">{error[name]}</p>}
     </div>
   );
 };

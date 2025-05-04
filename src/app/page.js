@@ -8,7 +8,7 @@ import { Step4 } from "@/_components/Step4";
 
 const HomePage = () => {
   const comp = [Step1, Step2, Step3, Step4];
-  const [index, setIndex] = useState(2);
+  const [index, setIndex] = useState(0);
   const [text, setText] = useState({
     firstName: "",
     lastName: "",
@@ -50,7 +50,7 @@ const HomePage = () => {
     if (index === 0) {
       if (text.firstName.trim() === "") {
         {
-          validateError.firstName = "neree olruulna";
+          validateError.firstName = "Нэрээ оруулна уу";
         }
       } else if (
         !/^[\u1800-\u18AF\u0400-\u04FF\s\d.,()-]+$/.test(text.firstName.trim())
@@ -59,47 +59,47 @@ const HomePage = () => {
       }
 
       if (text.lastName.trim() === "") {
-        validateError.lastName = "ovgoo olruulna";
+        validateError.lastName = "Овгоо оруулна уу";
       }
       if (text.userName.trim() === "") {
-        validateError.userName = "hereglegchiin neree olruulna";
+        validateError.userName = "Хэрэглэгчийн нэр оруулна уу";
       }
     }
 
     if (index === 1) {
       if (text.email.trim() === "") {
-        validateError.email = "emailee olruulna";
+        validateError.email = "Имэйл хаягаа оруулна уу";
       } else if (
         !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
           text.email.trim()
         )
       ) {
-        validateError.email = "emailee zov formataar olruulna";
+        validateError.email = "Имэйлээ зөв форматаар оруулна уу";
       }
       if (text.phoneNumber.trim() === "") {
-        validateError.phoneNumber = "utasnii dugaaraa olruulna";
+        validateError.phoneNumber = "Утасны дугаараа оруулна уу";
       } else if (!/^\d{8}$|^\d{10}$/.test(text.phoneNumber.trim())) {
-        validateError.phoneNumber = "utasnii dugaaraa zov olruulna";
+        validateError.phoneNumber = "Утасны дугаараа зөв оруулна уу";
       }
       if (text.password.trim() === "") {
-        validateError.password = "nuuts ugee olruulna";
+        validateError.password = "Нууц үгээ оруулна уу";
       }
       if (text.confirmPassword.trim() === "") {
-        validateError.confirmPassword = "nuuts ugee dahin olruulna";
+        validateError.confirmPassword = "Нууц үгээ дахин оруулна уу";
       } else if (text.confirmPassword !== text.password) {
-        validateError.confirmPassword = "nuuts ugee same olruulna";
+        validateError.confirmPassword = "Нууц үг ижил биш байна";
       }
     }
 
     if (index === 2) {
       const formats = ["jpg", "jpeg", "gif", "tif", "tiff", "png"];
       if (text.date.trim() === "") {
-        validateError.date = "on saraa olruulna";
+        validateError.date = "Он сараа оруулна уу";
       }
       if (text.image.trim() === "") {
-        validateError.image = "zurgaa olruulna";
+        validateError.image = "Зургаа оруулна уу";
       } else if (!formats.includes(text.image.split(".")[1])) {
-        validateError.image = "zurgaa zov formataar oruulna";
+        validateError.image = "Зургаа зөв форматаар оруулна уу";
       }
     }
 
@@ -118,7 +118,6 @@ const HomePage = () => {
 
   return (
     <div className="flex">
-      <h1 className="absolute">{JSON.stringify(text)}</h1>
       <Stepper
         stepperNext={stepperNext}
         stepperBack={stepperBack}
