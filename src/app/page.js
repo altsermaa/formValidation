@@ -8,7 +8,7 @@ import { Step4 } from "@/_components/Step4";
 
 const HomePage = () => {
   const comp = [Step1, Step2, Step3, Step4];
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState("");
   const [text, setText] = useState({
     firstName: "",
     lastName: "",
@@ -83,6 +83,8 @@ const HomePage = () => {
       }
       if (text.password.trim() === "") {
         validateError.password = "Нууц үгээ оруулна уу";
+      } else if (text.password.trim().length < 6) {
+        validateError.password = "6-аас дээш үсэг оруулна уу";
       }
       if (text.confirmPassword.trim() === "") {
         validateError.confirmPassword = "Нууц үгээ дахин оруулна уу";
@@ -96,6 +98,8 @@ const HomePage = () => {
       if (text.date.trim() === "") {
         validateError.date = "Он сараа оруулна уу";
       }
+      console.log(text.image);
+
       if (text.image.trim() === "") {
         validateError.image = "Зургаа оруулна уу";
       } else if (!formats.includes(text.image.split(".")[1])) {
@@ -111,6 +115,7 @@ const HomePage = () => {
   };
 
   const stepperBack = () => {
+    console.log("Before back, index:", index);
     index !== 0 && setIndex((prev) => prev - 1);
   };
 
