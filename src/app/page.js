@@ -5,9 +5,10 @@ import { Step1 } from "@/_components/Step1";
 import { Step2 } from "@/_components/Step2";
 import { Step3 } from "@/_components/Step3";
 import { Step4 } from "@/_components/Step4";
+import { Step3b } from "@/_components/Step3b";
 
 const HomePage = () => {
-  const comp = [Step1, Step2, Step3, Step4];
+  const comp = [Step3b, Step1, Step2, Step3, Step4];
   const [index, setIndex] = useState(0);
   const [text, setText] = useState({
     firstName: "",

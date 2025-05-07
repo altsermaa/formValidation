@@ -2,6 +2,7 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import { Header } from "@/_components/Header";
 import { motion } from "framer-motion";
+import { ImageInput } from "./ImageInput";
 
 export const Step3b = ({
   stepperNext,
@@ -31,16 +32,22 @@ export const Step3b = ({
             error={error}
             type={"date"}
           />
+          <ImageInput />
         </div>
-        <Button
-          text={"Continue 1/3"}
-          type={"next"}
-          onClick={stepperNext}
-          // text={text}
-          // setText={setText}
-          //   bgColor={"bg-black"}
-          //   textColor={"text-white"}
-        />
+        <div>
+          <div className="flex w-1/3 border border-[#c9d6df] rounded-lg">
+            <Button
+              text={"Back"}
+              type={"prev"}
+              onClick={stepperBack}
+              className="flex-none w-[128px] border border-[#c9d6df] rounded-lg"
+            />
+          </div>
+
+          <div className="flex w-2/3">
+            <Button text={"Continue 1/3"} type={"next"} onClick={stepperNext} />
+          </div>
+        </div>
       </div>
     </motion.div>
   );
