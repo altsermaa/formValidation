@@ -4,8 +4,6 @@ import { Header } from "@/_components/Header";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Image } from "lucide-react";
-// import { DndProvider } from "react-dnd";
-// import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const Step3 = ({
   stepperNext,
@@ -38,7 +36,6 @@ export const Step3 = ({
   };
 
   return (
-    // <DndProvider backend={HTML5Backend}>
     <motion.div
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
@@ -72,8 +69,10 @@ export const Step3 = ({
             <div className="relative w-full h-50 bg-[#f2f4f6] border-[#7F7F800D] rounded-lg flex items-center justify-center cursor-pointer">
               {!previewURL ? (
                 <>
-                  {/* <DropZone onDrop={handleDrop} /> */}
-                  <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
+                  <div
+                    className="w-full h-full flex flex-col items-center justify-center cursor-pointer"
+                    onDrop={handleDrop}
+                  >
                     <Image />
                     Browse or Drop Image
                     <Input
@@ -85,13 +84,14 @@ export const Step3 = ({
                       error={error}
                       className="absolute top-0 left-0 h-full w-full opacity-0 cursor-pointer"
                     />
-                  </label>
+                  </div>
                 </>
               ) : (
                 <div className="relative w-full h-full">
                   <img
                     alt="your image"
                     src={previewURL}
+                    fill
                     className="w-full h-full object-cover"
                   />
                   <button
@@ -123,6 +123,5 @@ export const Step3 = ({
         </div>
       </div>
     </motion.div>
-    // </DndProvider>
   );
 };

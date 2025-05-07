@@ -8,7 +8,7 @@ import { Step4 } from "@/_components/Step4";
 
 const HomePage = () => {
   const comp = [Step1, Step2, Step3, Step4];
-  const [index, setIndex] = useState("");
+  const [index, setIndex] = useState(0);
   const [text, setText] = useState({
     firstName: "",
     lastName: "",
@@ -115,7 +115,6 @@ const HomePage = () => {
   };
 
   const stepperBack = () => {
-    console.log("Before back, index:", index);
     index !== 0 && setIndex((prev) => prev - 1);
   };
 
